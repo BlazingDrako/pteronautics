@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pteronautics</title>
-<meta name="description" content="Pteronautics: free, open-source aerospace engineering in your browser. Atlas teaches the physics with a live visual for every concept; Works designs whole vehicles on the same validated solvers.">
+<meta name="description" content="Pteronautics: free, open-source aerospace engineering in your browser. Atlas teaches the physics with a live visual for every concept, Works designs whole vehicles on the same validated solvers, and Loom models the whole system in SysML.">
 <meta name="author" content="Andrew Aguiar">
 <meta property="og:title" content="Pteronautics">
-<meta property="og:description" content="Learn the physics in Atlas. Design the vehicle in Works. Free aerospace engineering tools that run in your browser.">
+<meta property="og:description" content="Learn the physics in Atlas. Design the vehicle in Works. Model the system in Loom. Free aerospace engineering tools that run in your browser.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0b0d11" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)">
@@ -25,11 +25,12 @@
   <div class="s-wrap s-nav-in">
     <a class="brand" href="#top" aria-label="Pteronautics, top of the page"><span class="brand-mark" data-brand></span><span class="brand-name">Pteronautics</span></a>
     <nav class="s-links" aria-label="Sections">
-      <a href="#programs">Programs</a><a href="#atlas">Atlas</a><a href="#works">Works</a><a href="#core">Solver core</a><a href="#open">Open source</a>
+      <a href="#programs">Programs</a><a href="#atlas">Atlas</a><a href="#works">Works</a><a href="#loom">Loom</a><a href="#core">Solver core</a><a href="#open">Open source</a>
     </nav>
     <span class="grow"></span>
     <button class="btn small s-theme" type="button" data-theme-btn aria-label="Switch theme"></button>
     <a class="btn small s-hide-sm" href="../pteronautics-atlas/">Atlas</a>
+    <a class="btn small s-hide-sm" href="../pteronautics-loom/">Loom</a>
     <a class="btn small primary" href="../pteronautics-works/">Works</a>
   </div>
 </header>
@@ -41,10 +42,11 @@
       <div class="s-hero-copy">
         <p class="s-eyebrow">Free · open source · runs in your browser</p>
         <h1>Aerospace engineering, <span class="accent">from first principles to a whole vehicle.</span></h1>
-        <p class="s-lede">Pteronautics is a family of aerospace programs built on one validated solver core. <b>Atlas</b> teaches the physics with a live visual for every concept. <b>Works</b> puts the same solvers to work designing whole vehicles.</p>
+        <p class="s-lede">Pteronautics is a family of aerospace programs. <b>Atlas</b> teaches the physics with a live visual for every concept. <b>Works</b> puts the same validated solvers to work designing whole vehicles. <b>Loom</b> models the whole system in SysML, from requirements to the parts that meet them.</p>
         <div class="s-cta">
           <a class="btn big s-cta-atlas" href="../pteronautics-atlas/"><span class="s-cta-k">Learn</span>Open Atlas <span aria-hidden="true">→</span></a>
           <a class="btn primary big" href="../pteronautics-works/#/v/kestrel"><span class="s-cta-k">Design</span>Open Works <span aria-hidden="true">→</span></a>
+          <a class="btn big s-cta-loom" href="../pteronautics-loom/"><span class="s-cta-k">Model</span>Open Loom <span aria-hidden="true">→</span></a>
         </div>
         <p class="s-fine">No install and no account. Nothing you make leaves your browser unless you save it.</p>
       </div>
@@ -57,13 +59,13 @@
     </div>
   </section>
 
-  <!-- the two programs -->
+  <!-- the three programs -->
   <section class="s-sec" id="programs">
     <div class="s-wrap">
       <div class="s-head">
-        <p class="s-eyebrow">Two programs, one core</p>
-        <h2>Learn it in Atlas. Use it in Works.</h2>
-        <p>Both programs run the same solvers, checked against textbooks, published data and reference codes. Atlas opens each one up so you can see how it behaves. Works couples them around a vehicle so a single edit flows through the whole design.</p>
+        <p class="s-eyebrow">Three programs</p>
+        <h2>Learn it in Atlas. Design it in Works. Model it in Loom.</h2>
+        <p>Atlas and Works run the same solvers, checked against textbooks, published data and reference codes: Atlas opens each one up so you can see how it behaves, and Works couples them around a vehicle so a single edit flows through the whole design. Loom holds the system around them: what it must do, how it is broken down, and how each requirement is met and verified.</p>
       </div>
       <div class="s-programs">
         <article class="s-prog pnl">
@@ -87,6 +89,17 @@
             <li>Requirements with live margins; vehicles saved as plain <code>.json</code></li>
           </ul>
           <div class="s-prog-foot"><a class="btn primary" href="../pteronautics-works/">Open Works →</a><a class="s-link" href="#works">See how it works</a></div>
+        </article>
+        <article class="s-prog pnl loom">
+          <div class="s-prog-head"><span class="s-prog-tag">Pteronautics Loom</span><span class="tag live">ready</span></div>
+          <h3>Every requirement, woven through to the part that meets it.</h3>
+          <p>Model-based systems engineering in SysML. Requirements, functions, logical and physical architecture and verification live in one model, traced end to end, and every diagram is a view of it.</p>
+          <ul class="s-list">
+            <li>Nine SysML diagram kinds, with tool palettes and smart connections</li>
+            <li>Saved as SysML v2 text, ready for git; equations and requirement checks live</li>
+            <li>Imports Cameo models; ReqIF, Excel and the SysML v2 API; installs and works offline</li>
+          </ul>
+          <div class="s-prog-foot"><a class="btn" href="../pteronautics-loom/">Open Loom →</a><a class="s-link" href="#loom">See a model</a></div>
         </article>
       </div>
     </div>
@@ -124,8 +137,33 @@
     </div>
   </section>
 
+  <!-- Loom: a sample model, live -->
+  <section class="s-sec s-alt" id="loom">
+    <div class="s-wrap s-split">
+      <div class="s-split-copy">
+        <p class="s-eyebrow">Pteronautics Loom</p>
+        <h2>The whole system, in one model.</h2>
+        <p>Every diagram in Loom is a view of one SysML model, organized in four layers: requirements, functions, logical architecture and physical parts. Rename a block on one diagram and it changes everywhere; trace a requirement from the stakeholder need to the part that satisfies it and the test that verifies it.</p>
+        <div class="s-points">
+          <div><b>Real SysML, v1 and v2</b><span>Block, internal block, requirement, activity, state machine, sequence, use case, package and parametric diagrams, in SysML or SysML v2 words.</span></div>
+          <div><b>Traced and checked live</b><span>The Systems V shows what is satisfied, verified and passed; equations solve as you type and requirement checks pass or fail against the design.</span></div>
+          <div><b>Plain text, ready for git</b><span>A project is a folder of SysML v2 text files you can diff, review and merge.</span></div>
+          <div><b>Works with your tools</b><span>Import Cameo and MagicDraw models; exchange requirements as ReqIF or Excel; talk to SysML v2 API servers; print documents to PDF.</span></div>
+        </div>
+        <div class="s-prog-foot"><a class="btn" href="../pteronautics-loom/">Open Loom →</a><a class="s-link" href="https://github.com/BlazingDrako/pteronautics-loom">Source on GitHub</a></div>
+      </div>
+      <div class="s-split-vis">
+        <div class="s-loom pnl" data-loom>
+          <div class="s-loom-tabs" role="tablist" aria-label="Views of the CubeSat sample" data-loom-tabs></div>
+          <div class="s-loom-frame" data-loom-frame><div class="s-ph">Loading the CubeSat sample…</div></div>
+        </div>
+        <p class="s-fine" data-loom-caption>The CubeSat power system sample, running in Loom on this page. Drag to pan, scroll to zoom.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- shared core, shown through the airfoil solver -->
-  <section class="s-sec s-alt" id="core">
+  <section class="s-sec" id="core">
     <div class="s-wrap s-split">
       <div class="s-split-copy">
         <p class="s-eyebrow">One solver core</p>
@@ -145,7 +183,7 @@
   </section>
 
   <!-- open source -->
-  <section class="s-sec" id="open">
+  <section class="s-sec s-alt" id="open">
     <div class="s-wrap">
       <div class="s-head">
         <p class="s-eyebrow">Open source</p>
@@ -155,7 +193,8 @@
       <div class="s-repos">
         <a class="s-repo pnl" href="https://github.com/BlazingDrako/pteronautics-atlas"><b>pteronautics-atlas</b><span>The interactive tools, the solver core and its validation suite.</span><span class="go">Source on GitHub →</span></a>
         <a class="s-repo pnl" href="https://github.com/BlazingDrako/pteronautics-works"><b>pteronautics-works</b><span>The vehicle model, coupling engine, analyses and workspace, on a recorded snapshot of the Atlas core.</span><span class="go">Source on GitHub →</span></a>
-        <a class="s-repo pnl" href="https://github.com/BlazingDrako/pteronautics"><b>pteronautics</b><span>This site. It loads its live figures straight from Atlas and Works.</span><span class="go">Source on GitHub →</span></a>
+        <a class="s-repo pnl" href="https://github.com/BlazingDrako/pteronautics-loom"><b>pteronautics-loom</b><span>The SysML model, its diagrams, the SysML v2 text, analysis, validation and exchange.</span><span class="go">Source on GitHub →</span></a>
+        <a class="s-repo pnl" href="https://github.com/BlazingDrako/pteronautics"><b>pteronautics</b><span>This site. It loads its live figures straight from Atlas, Works and Loom.</span><span class="go">Source on GitHub →</span></a>
       </div>
     </div>
   </section>
@@ -166,10 +205,10 @@
     <span class="brand"><span class="brand-mark" data-brand></span><span class="brand-name">Pteronautics</span></span>
     <span class="muted">Copyright © 2026 Andrew Aguiar · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0</a> · airfoil solver ported from mfoil (MIT)</span>
     <span class="grow"></span>
-    <a href="../pteronautics-atlas/">Atlas</a><a href="../pteronautics-works/">Works</a><a href="https://github.com/BlazingDrako/pteronautics">Source</a>
+    <a href="../pteronautics-atlas/">Atlas</a><a href="../pteronautics-works/">Works</a><a href="../pteronautics-loom/">Loom</a><a href="https://github.com/BlazingDrako/pteronautics">Source</a>
   </div>
 </footer>
-<noscript><p class="s-wrap">The live figures on this page need JavaScript. The links to Atlas and Works work without it.</p></noscript>
+<noscript><p class="s-wrap">The live figures on this page need JavaScript. The links to Atlas, Works and Loom work without it.</p></noscript>
 <script type="module" src="js/site.js"></script>
 </body>
 </html>

@@ -4,8 +4,9 @@
     http://localhost:8780/pteronautics/          this site
     http://localhost:8780/pteronautics-atlas/    Atlas  (clone it beside this folder)
     http://localhost:8780/pteronautics-works/    Works  (clone it beside this folder)
+    http://localhost:8780/pteronautics-loom/     Loom   (clone it beside this folder)
 
-The site loads its live figures from ../pteronautics-atlas/ and ../pteronautics-works/. Only these three folders
+The site loads its live figures from ../pteronautics-atlas/, ../pteronautics-works/ and ../pteronautics-loom/. Only these four folders
 are served, and only to this computer (127.0.0.1). Usage: python3 serve.py [port] [--no-browser]
 """
 import http.server, os, posixpath, sys, urllib.parse, webbrowser
@@ -14,8 +15,16 @@ args = [a for a in sys.argv[1:] if not a.startswith("--")]
 PORT = int(args[0]) if args else 8780
 HERE = os.path.dirname(os.path.abspath(__file__))
 PARENT = os.path.dirname(HERE)
-SITES = {"pteronautics": HERE, "pteronautics-atlas": os.path.join(PARENT, "pteronautics-atlas"),
-         "pteronautics-works": os.path.join(PARENT, "pteronautics-works")}
+def beside(*names):
+    """The first of these folders that exists beside this one (clones are named pteronautics-*, or Atlas, Works, Loom)."""
+    for n in names:
+        if os.path.isdir(os.path.join(PARENT, n)):
+            return os.path.join(PARENT, n)
+    return os.path.join(PARENT, names[0])
+
+
+SITES = {"pteronautics": HERE, "pteronautics-atlas": beside("pteronautics-atlas", "Atlas"),
+         "pteronautics-works": beside("pteronautics-works", "Works"), "pteronautics-loom": beside("pteronautics-loom", "Loom")}
 
 for name, path in SITES.items():
     if not os.path.isdir(path):

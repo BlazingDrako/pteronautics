@@ -1,12 +1,14 @@
-// Pteronautics: the umbrella site for Atlas and Works.
+// Pteronautics: the umbrella site for Atlas, Works and Loom.
 //
-// The live figures come straight from the two programs, which GitHub Pages serves beside this site on the same
-// origin (…/pteronautics-atlas/ and …/pteronautics-works/). They are imported at run time, so this page always
-// shows the programs as they are; if either cannot be reached (or a module moves), its figures fall back to text
-// and every link still works. To run locally, serve the folder that holds all three repositories (see README).
+// The live figures come straight from the programs, which GitHub Pages serves beside this site on the same
+// origin (…/pteronautics-atlas/, …/pteronautics-works/ and …/pteronautics-loom/). They are imported (or, for Loom,
+// framed) at run time, so this page always shows the programs as they are; if one cannot be reached (or a module
+// moves), its figures fall back to text and every link still works. To run locally, serve the folder that holds
+// all four repositories (see README).
 
 const ATLAS = new URL('../pteronautics-atlas/', document.baseURI).href;
 const WORKS = new URL('../pteronautics-works/', document.baseURI).href;
+const LOOM = new URL('../pteronautics-loom/', document.baseURI).href;
 const $ = sel => document.querySelector(sel);
 
 // ---------------------------------------------------------------- tiny DOM helpers (no dependency on either program)
@@ -217,3 +219,41 @@ import(ATLAS + 'js/previews.js').then(({ PREVIEWS }) => {
   el.replaceChildren(h('a', { class: 'm-card s-hero-card', href: `${ATLAS}#/airfoil`, 'aria-hidden': null },
     h('div', { class: 'card-preview', html: PREVIEWS.airfoil() }), h('span', {}, h('b', {}, 'Atlas'), ' · Airfoil Lab')));
 }).catch(() => { });
+
+// ---------------------------------------------------------------- Loom: the CubeSat sample, live in a frame
+// Loom's embed page builds a sample model and shows one of its views, read-only (pan, zoom, select). It is drawn
+// by Loom with Loom's own styles, so it sits in a frame; the tabs choose the view, and the frame follows the
+// site's theme.
+{
+  const box = $('[data-loom]'), tabs = $('[data-loom-tabs]'), frameBox = $('[data-loom-frame]'), cap = $('[data-loom-caption]');
+  const VIEWS = [
+    ['v:home', 'Systems V', 'The Systems V: how far each stage is, from stakeholder needs down to the parts and back up through verification.'],
+    ['Power system structure', 'Blocks', 'A block definition diagram: the spacecraft, its electrical power system and what they are made of.'],
+    ['Power flow', 'Activity', 'An activity diagram: harvesting, storing and regulating power, in swimlanes for the blocks that do each step.'],
+    ['Energy budget', 'Equations', 'A parametric diagram: the orbit-average power, solved live and checked against its 7 W requirement.'],
+    ['Power requirements', 'Requirements', 'A requirement diagram: what satisfies each requirement and which test verifies it.'],
+    ['Power modes', 'States', 'A state machine: the power system\'s safe, sunlit and eclipse modes.'],
+  ];
+  let frame = null, current = '';
+  const src = (view) => `${LOOM}embed.html?sample=cubesat&view=${encodeURIComponent(view)}&theme=${resolved()}`;
+  const show = (view) => {
+    current = view;
+    for (const b of tabs.querySelectorAll('button')) b.setAttribute('aria-selected', String(b.dataset.view === view));
+    const v = VIEWS.find(x => x[0] === view);
+    if (!frame) {
+      frame = h('iframe', { title: 'A live view of the CubeSat sample in Pteronautics Loom', loading: 'lazy', src: src(view) });
+      frame.addEventListener('load', () => frameBox.querySelector('.s-ph')?.remove());
+      frameBox.append(frame);
+    } else frame.src = src(view);
+    cap.textContent = `${v ? v[2] : ''} The CubeSat power system sample, running in Loom: drag to pan, scroll to zoom.`;
+  };
+  if (box) {
+    tabs.replaceChildren(...VIEWS.map(([view, label]) => h('button', { type: 'button', role: 'tab', 'data-view': view, 'aria-selected': 'false', onclick: () => show(view) }, label)));
+    whenVisible(box, () => {
+      // only frame Loom when it is there; otherwise keep the link
+      fetch(LOOM + 'embed.html', { method: 'HEAD' }).then(r => { if (!r.ok) throw new Error(String(r.status)); show(VIEWS[0][0]); })
+        .catch(() => { fallback(frameBox, 'The live model loads from Loom, which could not be reached just now.'); tabs.hidden = true; cap.textContent = ''; });
+    });
+    addEventListener('themechange', () => { frame?.contentWindow?.postMessage({ theme: resolved() }, location.origin); });
+  }
+}
