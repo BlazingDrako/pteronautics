@@ -76,7 +76,12 @@ body.site { font-size: 15px; line-height: 1.55; background: var(--bg); overflow-
 .s-hero h1 .accent { display: inline; }
 .s-cta .btn { gap: 10px; }
 .s-cta-k { font: 600 10px var(--font); letter-spacing: .14em; text-transform: uppercase; opacity: .7; padding-right: 10px; border-right: 1px solid currentColor; }
-.s-cta-atlas:hover { border-color: var(--hl); }
+/* each program has its own color: Atlas coral, Works blue, Loom teal */
+.prog-atlas { --pc: var(--hl); } .prog-works { --pc: var(--accent); } .prog-loom { --pc: var(--lam); }
+.btn.prog { color: var(--text); background: color-mix(in srgb, var(--pc) 13%, var(--bg-elev)); border-color: color-mix(in srgb, var(--pc) 55%, var(--border)); }
+.btn.prog:hover { background: color-mix(in srgb, var(--pc) 24%, var(--bg-elev)); border-color: var(--pc); }
+.btn.prog:focus-visible { outline: 2px solid var(--pc); outline-offset: 2px; }
+.btn.prog .s-cta-k { color: var(--pc); opacity: 1; }
 .s-link { font-size: 13.5px; font-weight: 600; }
 .s-ph.wide { grid-column: 1 / -1; height: 220px; }
 .s-hero-off { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text-3); }
@@ -100,7 +105,6 @@ body.site { font-size: 15px; line-height: 1.55; background: var(--bg); overflow-
 .s-prog-tag { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 .s-prog:not(.on):not(.loom) .s-prog-tag { color: var(--hl); }
 .s-prog.loom .s-prog-tag { color: var(--lam); }
-.s-cta-loom:hover { border-color: var(--lam); }
 .s-prog h3 { font-size: 22px; letter-spacing: -.02em; line-height: 1.2; margin: 0; }
 .s-prog p { color: var(--text-2); margin: 0; }
 .s-prog .s-list { margin: 0; }
